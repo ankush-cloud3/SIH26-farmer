@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AgriDirect - Fresh Farm Produce in Bulk</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="logo">Agri<span>Direct</span></div>
+    <nav class="nav-links">
+      <a href="#marketplace">Marketplace</a>
+      <a href="#bulk-info">Bulk Policy</a>
+    </nav>
+    <div class="auth-status" id="auth-status-container">
+      <button class="btn btn-primary" onclick="openAuthModal()">Sign In / Sign Up</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Fresh Harvest, Directly From Verified Farms</h1>
+      <p>Empower local farmers while sourcing premium agricultural produce in bulk quantities for wholesale, retail, and commercial kitchens.</p>
+    </div>
+  </section>
+
+  <main class="main-layout" id="marketplace">
+    
+    <section class="products-section">
+      <div class="section-title">
+        <h2>Available Fresh Crops</h2>
+        <p>Direct supply updated straight from farmer WhatsApp listings.</p>
+      </div>
+      <div class="products-grid" id="products-grid">
+        </div>
+    </section>
+
+    <aside class="cart-sidebar">
+      <h3>Bulk Order Summary</h3>
+      <div id="cart-items" class="cart-items-container">
+        <p class="empty-cart-msg">Select produce items from the grid to build your wholesale order.</p>
+      </div>
+      <hr class="divider" />
+      <div class="cart-totals">
+        <div class="total-row">
+          <span>Total Weight:</span>
+          <span id="cart-total-weight">0 kg</span>
+        </div>
+        <div class="total-row final-price">
+          <span>Total Payable:</span>
+          <span id="cart-total-price">₹0</span>
+        </div>
+      </div>
+      <div class="bulk-warning-box hidden" id="bulk-warning">
+        ⚠️ Minimum order limit is 50 kg per item for bulk buyer checkout.
+      </div>
+      <button class="btn btn-checkout" id="checkout-btn" onclick="initiateCheckout()" disabled>
+        Proceed to Checkout
+      </button>
+    </aside>
+  </main>
+
+  <div class="modal-overlay hidden" id="auth-modal">
+    <div class="modal-card">
+      <button class="close-btn" onclick="closeAuthModal()">&times;</button>
+      
+      <div class="tab-controls">
+        <button class="tab-btn active" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+        <button class="tab-btn" id="tab-signin" onclick="switchTab('signin')">Sign In</button>
+      </div>
+
+      <form id="signup-form" class="auth-form" onsubmit="handleSignUp(event)">
+        <div class="form-group">
+          <label for="signup-phone">Phone Number</label>
+          <input type="tel" id="signup-phone" placeholder="Enter 10-digit mobile number" pattern="[0-9]{10}" required />
+        </div>
+        <div class="form-group">
+          <label for="signup-password">Generate Password</label>
+          <input type="password" id="signup-password" minlength="6" placeholder="At least 6 characters" required />
+        </div>
+        <button type="submit" class="btn btn-primary full-width">Create Account</button>
+      </form>
+
+      <form id="signin-form" class="auth-form hidden" onsubmit="handleSignIn(event)">
+        <div class="form-group">
+          <label for="signin-phone">Phone Number</label>
+          <input type="tel" id="signin-phone" placeholder="Enter mobile number" pattern="[0-9]{10}" required />
+        </div>
+        <div class="form-group">
+          <label for="signin-password">Password</label>
+          <input type="password" id="signin-password" placeholder="Enter your password" required />
+        </div>
+        <button type="submit" class="btn btn-primary full-width">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <footer id="bulk-info">
+    <p>&copy; 2026 AgriDirect Wholesale Network. Empowering Farmers via Direct Tech Solutions.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
