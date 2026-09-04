@@ -1,8 +1,0 @@
-fastapi
-uvicorn
-supabase
-passlib[bcrypt]
-bcrypt
-python-jose[cryptography]
-twilio
-python-dotenv
