@@ -1,7 +1,18 @@
+import os
+import json
 import firebase_admin
 from firebase_admin import credentials, firestore
 
-cred = credentials.Certificate("firebase-credentials.json")
+# On Render: paste the full firebase-credentials.json content into an env
+# var named FIREBASE_CREDENTIALS_JSON. Locally: keeps using the file, so
+# nothing changes on your machine.
+firebase_creds_json = os.getenv("FIREBASE_CREDENTIALS_JSON")
+
+if firebase_creds_json:
+    cred = credentials.Certificate(json.loads(firebase_creds_json))
+else:
+    cred = credentials.Certificate("firebase-credentials.json")
+
 firebase_admin.initialize_app(cred)
 
 db = firestore.client()
